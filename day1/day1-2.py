@@ -81,8 +81,8 @@ FINAL HYPOTHESIS:
     else:
         zeros += 1
 
-ISSUE:
-    
+REVISIT:
+    answer is too low
 """
 
 if len(sys.argv) != 2:
@@ -102,17 +102,20 @@ with open(input_filename, "r") as _input, open("output.txt", "w") as _output:
         _dir = line[0]
         _rot = int(line[1:])
 
+        extra_zeros = (curr + _rot) // 100
+
+        # deduct initial zero dupe
+        if curr == 0 and extra_zeros > 0:
+            extra_zeros -= 1
+
+        zeros += extra_zeros
+
         if _dir == "L":
             curr = (100 + curr - _rot) % 100
         else:
             curr = (curr + _rot) % 100
 
-        # add zero if we wrap
-        extra_zeros = (curr + _rot) // 100  # amount of times we wrapped
-        zeros += extra_zeros
-        # FIXME: This approach is wrong^
-
-        # add zero if we land on it
+        # add final 0
         if curr == 0 and extra_zeros == 0:
             zeros += 1
 
