@@ -103,8 +103,10 @@ with open(input_filename, "r") as _input, open("output.txt", "w") as _output:
         else:
             curr = (curr + _rot) % 100
 
+        # these are interchangeable because a direction doesn't have an inherent meaning
+
         if curr == 0:
             zeros += 1
 
-        _output.write(f"{_dir}, {_rot}, {curr}, {zeros}\n")
+        # _output.write(f"{_dir}, {_rot}, {curr}, {zeros}\n")
     _output.write(f"ZEROS: {zeros}\n")
