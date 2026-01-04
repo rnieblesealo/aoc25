@@ -3,38 +3,33 @@
 import sys
 
 """
-INITIAL HYPOTHESIS:
-
-if l, curr - rot
-if curr - rot < 0, l = 100 + (curr - rot) where curr - rot < 0
-if r, curr + rot
-if curr + rot > 99, r = 100 - (curr + rot) where curr + rot > 99
-
-TESTING:
-
-START:
-    50
-L68:
-    50 - 68 = -18; underflow
-    100 - 18 = 82
-L30:
-    82 - 30 = 52; OK
-R48:
-    52 + 48 = 100; overflow
-    100 - (52 + 48) = 0
-L5:
-    0 - 5 = -5; underflow
-    100 + (-5) = 95
+initial hypothesis:
+    if l, curr - rot
+    if curr - rot < 0, l = 100 + (curr - rot) where curr - rot < 0
+    if r, curr + rot
+    if curr + rot > 99, r = 100 - (curr + rot) where curr + rot > 99
+does it work?
+    start:
+        50
+    l68:
+        50 - 68 = -18; underflow
+        100 - 18 = 82
+    l30:
+        82 - 30 = 52; ok
+    r48:
+        52 + 48 = 100; overflow
+        100 - (52 + 48) = 0
+    l5:
+        0 - 5 = -5; underflow
+        100 + (-5) = 95
 
 logic is working, time to test!
-
-OUTCOME: IT FAILED; breaks when rotating over a value > 100
-
-REVISING HYPOTHESIS:
+outcome: it failed; breaks when rotating over a value > 100
+revising hypothesis:
 
 e.g.
-START 50
-L 500
+start 50
+l 500
 50 - 500 = -450; underflow
 100 + -450 = -550 which is still underflowing
 
@@ -45,10 +40,10 @@ there are 100 positions
 
 end should be 50
 
-IMPLEMENT WRAP AROUND; MODULO/DIVISION
+implement wrap around; modulo/division
 
-e.g. START 50
-R 568
+e.g. start 50
+r 568
 
 should really be 50 + 68 since the 500 rotations will just wrap
 
@@ -69,16 +64,15 @@ if l:
 
 testing:
 
-START 50
+start 50
 
-L68:
+l68:
     new = (100 + 50 - 68) % 100 = 82
-L30:
+l30:
     new = (100 + 82 - 30) % 100 = 52
 
-SEEMS FINE, TEST TIME
-
-Yup this was it!
+seems fine, test time
+yup this was it!
 """
 
 if len(sys.argv) != 2:
