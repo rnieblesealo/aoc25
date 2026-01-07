@@ -1,11 +1,28 @@
 import sys
 
-# FIXME: SEQUENCE OF DIGITS REPEATED **TWICE**
-# **READ THE GODDAMN PROBLEM RIGHT!!!**
-# **THIS IS SO EASY NOW :D**
+
+"""
+part 1
+all about divisibility
+    original solution:
+
+    if the subsequence length (lets call it x) divides the total string length,
+    it means that it might be a link in the chain
+    so we make a string made up of that subsequence n times (n = string length)
+    if it matches the original string, then it is made up of that subsequence!
+    if not continue trying for all numbers that divide the total string length
+
+    this worked, but i didn't read the problem right!
+    the number is invalid if it's made of **exactly 2 repeating sequences of chars**
+
+    this meant that we only had to check if the string length was divisible by 2,
+    and if so, all we needed to do was see if the first and second halves matched
+
+    applying this iteratively to all of the ranges yielded the correct result
+    (albeit really slow!)
+"""
 
 
-# this is old solution that checks if number is made of any number of sequences
 def invalid(n):
     s = str(n)  # work with number as string
     for i in range(1, len(s)):
@@ -61,10 +78,3 @@ with open(input_filename, "r") as _input, open("output.txt", "w") as _output:
                     print(f"\t{n} seems invalid")
                     _invalid_sum += n
         print(f"Final sum: {_invalid_sum}")
-
-"""
-improving the solution
-    curr solution is too slow because we manually check each number
-    what patterns can we leverage?
-        * even for ranges of very large numbers, there's never more than 1 invalid id
-"""

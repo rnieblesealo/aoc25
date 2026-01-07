@@ -2,4 +2,7 @@
 
 things that will help skill issues:
 
-- flow control math
+- READ THE GODDAMN PROBLEM
+- python string/slicing tricks are ur homies
+- writing a naive solution is fine
+- flow control math (???)
